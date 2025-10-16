@@ -4,16 +4,9 @@ import { toast } from "react-toastify";
 export const questionService = {
   async getAll() {
     try {
-      const apperClient = getApperClient();
+const apperClient = getApperClient();
       if (!apperClient) {
         throw new Error("ApperClient not initialized");
-      }
-
-const apperClient = getApperClient();
-      
-      if (!apperClient) {
-        console.info('apper_info: ApperClient not initialized yet, skipping question fetch');
-        return [];
       }
 
       const params = {
@@ -73,14 +66,9 @@ const apperClient = getApperClient();
 
   async getById(id) {
     try {
-      const apperClient = getApperClient();
+const apperClient = getApperClient();
       if (!apperClient) {
         throw new Error("ApperClient not initialized");
-      }
-      
-      if (!apperClient) {
-        console.info('apper_info: ApperClient not initialized yet, skipping question fetch by ID');
-        return null;
       }
 
       const params = {
