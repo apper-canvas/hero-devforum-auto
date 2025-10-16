@@ -1,0 +1,152 @@
+[
+  {
+    "Id": 1,
+    "questionId": 1,
+    "content": "The key difference is in how they handle updates:\n\n**useState** triggers a re-render immediately when you call the setter function. It's synchronous in terms of scheduling the update.\n\n**useReducer** is better for complex state logic because:\n- It centralizes state update logic in one place\n- Makes testing easier (pure reducer functions)\n- Better for state that depends on previous state\n- Helpful when state updates involve multiple sub-values\n\nExample with useReducer:\n```javascript\nconst [state, dispatch] = useReducer(reducer, initialState);\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case 'increment':\n      return { count: state.count + 1 };\n    case 'decrement':\n      return { count: state.count - 1 };\n    default:\n      return state;\n  }\n}\n```\n\nUse **useState** for simple state, **useReducer** for complex state with multiple related values or when next state depends on previous state.",
+    "authorId": 2,
+    "votes": 45,
+    "isAccepted": true,
+    "createdAt": "2024-12-10T09:30:00Z",
+    "updatedAt": "2024-12-10T09:30:00Z"
+  },
+  {
+    "Id": 2,
+    "questionId": 1,
+    "content": "I'd also add that useReducer shines when you have state transitions that need to be predictable and testable. The reducer function is a pure function, making it easier to write unit tests.\n\nAnother advantage is when you need to pass down update logic to deeply nested components - you can pass the dispatch function instead of multiple callback functions.",
+    "authorId": 3,
+    "votes": 23,
+    "isAccepted": false,
+    "createdAt": "2024-12-10T11:15:00Z",
+    "updatedAt": "2024-12-10T11:15:00Z"
+  },
+  {
+    "Id": 3,
+    "questionId": 2,
+    "content": "For optimal performance with large datasets in Node.js, consider these strategies:\n\n**1. Streaming Data**\n```javascript\nconst stream = require('stream');\nconst { pipeline } = require('stream/promises');\n\nconst transformStream = new stream.Transform({\n  transform(chunk, encoding, callback) {\n    // Process chunk\n    this.push(processedData);\n    callback();\n  }\n});\n```\n\n**2. Connection Pooling**\nUse connection pools for database queries to reuse connections instead of creating new ones.\n\n**3. Pagination**\nImplement cursor-based pagination for large result sets:\n```javascript\nconst result = await db.collection.find()\n  .limit(100)\n  .skip(cursor)\n  .toArray();\n```\n\n**4. Indexing**\nEnsure proper database indexes on frequently queried fields.\n\n**5. Caching**\nImplement Redis or in-memory caching for frequently accessed data.\n\n**6. Worker Threads**\nUse worker threads for CPU-intensive operations to avoid blocking the event loop.",
+    "authorId": 4,
+    "votes": 38,
+    "isAccepted": true,
+    "createdAt": "2024-12-11T14:20:00Z",
+    "updatedAt": "2024-12-11T14:20:00Z"
+  },
+  {
+    "Id": 4,
+    "questionId": 2,
+    "content": "Don't forget about **batching** operations when dealing with large datasets. Instead of processing records one by one, batch them:\n\n```javascript\nconst batchSize = 1000;\nfor (let i = 0; i < data.length; i += batchSize) {\n  const batch = data.slice(i, i + batchSize);\n  await processBatch(batch);\n}\n```\n\nAlso consider using **async iterators** for processing streams of data without loading everything into memory.",
+    "authorId": 1,
+    "votes": 19,
+    "isAccepted": false,
+    "createdAt": "2024-12-11T16:45:00Z",
+    "updatedAt": "2024-12-11T16:45:00Z"
+  },
+  {
+    "Id": 5,
+    "questionId": 3,
+    "content": "There are several excellent options for state management beyond Redux:\n\n**1. Zustand**\n- Minimal boilerplate\n- No providers needed\n- Built-in TypeScript support\n- Small bundle size (~1kb)\n\n```javascript\nimport create from 'zustand';\n\nconst useStore = create((set) => ({\n  count: 0,\n  increment: () => set((state) => ({ count: state.count + 1 }))\n}));\n```\n\n**2. Jotai**\n- Atomic state management\n- Bottom-up approach\n- Great for derived state\n\n**3. Recoil**\n- Developed by Facebook\n- Atom-based state\n- Excellent for complex apps\n\n**4. MobX**\n- Observable-based\n- Less boilerplate than Redux\n- Automatic dependency tracking\n\n**5. Context API + useReducer**\n- Built into React\n- No external dependencies\n- Good for small to medium apps\n\nMy recommendation: **Zustand** for most projects due to its simplicity and performance.",
+    "authorId": 3,
+    "votes": 42,
+    "isAccepted": true,
+    "createdAt": "2024-12-12T10:00:00Z",
+    "updatedAt": "2024-12-12T10:00:00Z"
+  },
+  {
+    "Id": 6,
+    "questionId": 3,
+    "content": "I've been using **Valtio** recently and it's fantastic. It uses proxies to make state management feel natural:\n\n```javascript\nimport { proxy, useSnapshot } from 'valtio';\n\nconst state = proxy({ count: 0 });\n\nfunction Counter() {\n  const snap = useSnapshot(state);\n  return <button onClick={() => state.count++}>{snap.count}</button>;\n}\n```\n\nThe mutability feels more intuitive than Redux's immutability patterns.",
+    "authorId": 2,
+    "votes": 15,
+    "isAccepted": false,
+    "createdAt": "2024-12-12T13:30:00Z",
+    "updatedAt": "2024-12-12T13:30:00Z"
+  },
+  {
+    "Id": 7,
+    "questionId": 4,
+    "content": "TypeScript provides several benefits for JavaScript developers:\n\n**1. Early Error Detection**\nCatch type-related errors during development instead of runtime:\n```typescript\nfunction greet(name: string) {\n  return `Hello, ${name}`;\n}\ngreet(123); // Error: Argument of type 'number' not assignable to 'string'\n```\n\n**2. Better IDE Support**\n- Intelligent autocomplete\n- Inline documentation\n- Refactoring tools\n- Go-to-definition\n\n**3. Self-Documenting Code**\nTypes serve as inline documentation:\n```typescript\ninterface User {\n  id: number;\n  name: string;\n  email: string;\n  roles: string[];\n}\n```\n\n**4. Easier Refactoring**\nConfidence when making changes to large codebases.\n\n**5. Better Collaboration**\nClear contracts between different parts of the application.\n\n**6. Catches Common Mistakes**\n- Null/undefined access\n- Property typos\n- Wrong function arguments\n\nThe learning curve is worth it for any serious JavaScript project.",
+    "authorId": 1,
+    "votes": 31,
+    "isAccepted": true,
+    "createdAt": "2024-12-13T08:15:00Z",
+    "updatedAt": "2024-12-13T08:15:00Z"
+  },
+  {
+    "Id": 8,
+    "questionId": 4,
+    "content": "Another huge benefit is **preventing runtime errors in production**. I've caught countless bugs during development that would have otherwise made it to production.\n\nAlso, TypeScript's **union types and discriminated unions** are incredibly powerful for modeling complex domain logic safely.",
+    "authorId": 4,
+    "votes": 18,
+    "isAccepted": false,
+    "createdAt": "2024-12-13T10:45:00Z",
+    "updatedAt": "2024-12-13T10:45:00Z"
+  },
+  {
+    "Id": 9,
+    "questionId": 5,
+    "content": "Here are proven best practices for testing React components:\n\n**1. Test User Behavior, Not Implementation**\n```javascript\nimport { render, screen, fireEvent } from '@testing-library/react';\n\ntest('increments counter when button is clicked', () => {\n  render(<Counter />);\n  const button = screen.getByRole('button', { name: /increment/i });\n  fireEvent.click(button);\n  expect(screen.getByText('Count: 1')).toBeInTheDocument();\n});\n```\n\n**2. Use Testing Library Queries Properly**\n- Prefer `getByRole` over `getByTestId`\n- Use `queryBy` for elements that shouldn't exist\n- Use `findBy` for async elements\n\n**3. Avoid Testing Implementation Details**\nDon't test state, props, or internal component methods directly.\n\n**4. Mock External Dependencies**\n```javascript\njest.mock('@/services/api');\n```\n\n**5. Test Accessibility**\nEnsure components are accessible:\n```javascript\nexpect(screen.getByLabelText('Email')).toBeInTheDocument();\n```\n\n**6. Use MSW for API Mocking**\nMock Service Worker provides realistic API mocking.\n\n**7. Keep Tests Simple and Readable**\nOne assertion per test when possible.\n\n**8. Test Error States**\nAlways test loading, error, and success states.",
+    "authorId": 2,
+    "votes": 36,
+    "isAccepted": true,
+    "createdAt": "2024-12-14T09:00:00Z",
+    "updatedAt": "2024-12-14T09:00:00Z"
+  },
+  {
+    "Id": 10,
+    "questionId": 5,
+    "content": "I'd emphasize the importance of **integration tests** over unit tests for React components. Test how components work together, not in isolation.\n\nAlso, use **data-testid** sparingly - it's a code smell that usually means your component isn't accessible enough.",
+    "authorId": 3,
+    "votes": 12,
+    "isAccepted": false,
+    "createdAt": "2024-12-14T11:30:00Z",
+    "updatedAt": "2024-12-14T11:30:00Z"
+  },
+  {
+    "Id": 11,
+    "questionId": 1,
+    "content": "From a performance perspective, useReducer can also help prevent unnecessary re-renders when you're passing callbacks to child components. With useReducer, you can pass the dispatch function which has a stable reference, whereas with useState you might need to wrap callbacks in useCallback.",
+    "authorId": 4,
+    "votes": 8,
+    "isAccepted": false,
+    "createdAt": "2024-12-10T15:20:00Z",
+    "updatedAt": "2024-12-10T15:20:00Z"
+  },
+  {
+    "Id": 12,
+    "questionId": 2,
+    "content": "Another important consideration is **memory management**. When working with large datasets, use `setImmediate()` or `process.nextTick()` strategically to break up long-running operations and prevent memory buildup.",
+    "authorId": 2,
+    "votes": 5,
+    "isAccepted": false,
+    "createdAt": "2024-12-11T18:10:00Z",
+    "updatedAt": "2024-12-11T18:10:00Z"
+  },
+  {
+    "Id": 13,
+    "questionId": 3,
+    "content": "If you're working with React 18+, don't overlook the built-in **useSyncExternalStore** hook. It's perfect for subscribing to external stores and works great with libraries like Zustand.",
+    "authorId": 1,
+    "votes": 7,
+    "isAccepted": false,
+    "createdAt": "2024-12-12T16:00:00Z",
+    "updatedAt": "2024-12-12T16:00:00Z"
+  },
+  {
+    "Id": 14,
+    "questionId": 4,
+    "content": "Don't forget about **type inference**! TypeScript can often infer types automatically, so you don't need to annotate everything:\n\n```typescript\nconst numbers = [1, 2, 3]; // TypeScript infers number[]\nconst doubled = numbers.map(n => n * 2); // Infers number[]\n```\n\nOver-annotating can make code harder to read.",
+    "authorId": 3,
+    "votes": 9,
+    "isAccepted": false,
+    "createdAt": "2024-12-13T14:25:00Z",
+    "updatedAt": "2024-12-13T14:25:00Z"
+  },
+  {
+    "Id": 15,
+    "questionId": 5,
+    "content": "One practice I find invaluable is **snapshot testing** for complex UI components. It helps catch unintended visual changes:\n\n```javascript\nimport renderer from 'react-test-renderer';\n\ntest('matches snapshot', () => {\n  const tree = renderer.create(<MyComponent />).toJSON();\n  expect(tree).toMatchSnapshot();\n});\n```\n\nJust be careful not to overuse it - snapshots should supplement, not replace, behavioral tests.",
+    "authorId": 4,
+    "votes": 11,
+    "isAccepted": false,
+    "createdAt": "2024-12-14T13:45:00Z",
+    "updatedAt": "2024-12-14T13:45:00Z"
+  }
+]
