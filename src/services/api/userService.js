@@ -1,4 +1,24 @@
-import usersData from "@/services/mockData/users.json";
+// Mock data store
+const usersData = [
+  {
+    Id: "user1",
+    name: "John Doe",
+    email: "john@example.com",
+    reputation: 150,
+    questionsAsked: 5,
+    answersGiven: 12,
+    joinedDate: new Date("2024-01-15").toISOString()
+  },
+  {
+    Id: "user2",
+    name: "Jane Smith",
+    email: "jane@example.com",
+    reputation: 200,
+    questionsAsked: 8,
+    answersGiven: 15,
+    joinedDate: new Date("2024-02-01").toISOString()
+  }
+];
 
 export const userService = {
   async getAll() {
