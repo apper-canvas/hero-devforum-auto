@@ -1,0 +1,102 @@
+[
+  {
+    "Id": 1,
+    "user_id_c": 1,
+    "message_c": "Your question 'How to optimize React component rendering?' received a new answer",
+    "type_c": "answer",
+    "read_c": false,
+    "question_id_c": 1,
+    "answer_id_c": 1,
+    "CreatedOn": "2024-01-15T10:30:00Z"
+  },
+  {
+    "Id": 2,
+    "user_id_c": 2,
+    "message_c": "Someone commented on your answer about React hooks",
+    "type_c": "comment",
+    "read_c": false,
+    "question_id_c": 2,
+    "answer_id_c": 2,
+    "CreatedOn": "2024-01-15T09:15:00Z"
+  },
+  {
+    "Id": 3,
+    "user_id_c": 1,
+    "message_c": "Your answer received 5 upvotes",
+    "type_c": "upvote",
+    "read_c": true,
+    "question_id_c": 3,
+    "answer_id_c": 3,
+    "CreatedOn": "2024-01-14T16:45:00Z"
+  },
+  {
+    "Id": 4,
+    "user_id_c": 3,
+    "message_c": "New answer posted to 'Best practices for API integration'",
+    "type_c": "answer",
+    "read_c": true,
+    "question_id_c": 4,
+    "answer_id_c": 4,
+    "CreatedOn": "2024-01-14T14:20:00Z"
+  },
+  {
+    "Id": 5,
+    "user_id_c": 2,
+    "message_c": "Your question about TypeScript generics received a new answer",
+    "type_c": "answer",
+    "read_c": false,
+    "question_id_c": 5,
+    "answer_id_c": 5,
+    "CreatedOn": "2024-01-14T11:30:00Z"
+  },
+  {
+    "Id": 6,
+    "user_id_c": 1,
+    "message_c": "Someone mentioned you in a comment",
+    "type_c": "comment",
+    "read_c": true,
+    "question_id_c": 1,
+    "answer_id_c": 1,
+    "CreatedOn": "2024-01-13T18:00:00Z"
+  },
+  {
+    "Id": 7,
+    "user_id_c": 3,
+    "message_c": "Your answer about state management received 10 upvotes",
+    "type_c": "upvote",
+    "read_c": true,
+    "question_id_c": 6,
+    "answer_id_c": 6,
+    "CreatedOn": "2024-01-13T15:45:00Z"
+  },
+  {
+    "Id": 8,
+    "user_id_c": 2,
+    "message_c": "New comment on your question 'Understanding React Context'",
+    "type_c": "comment",
+    "read_c": false,
+    "question_id_c": 7,
+    "answer_id_c": 7,
+    "CreatedOn": "2024-01-13T12:30:00Z"
+  },
+  {
+    "Id": 9,
+    "user_id_c": 1,
+    "message_c": "Your question 'CSS Grid vs Flexbox' received a new answer",
+    "type_c": "answer",
+    "read_c": true,
+    "question_id_c": 8,
+    "answer_id_c": 8,
+    "CreatedOn": "2024-01-12T10:15:00Z"
+  },
+  {
+    "Id": 10,
+    "user_id_c": 3,
+    "message_c": "Someone upvoted your answer on performance optimization",
+    "type_c": "upvote",
+    "read_c": false,
+    "question_id_c": 9,
+    "answer_id_c": 9,
+    "CreatedOn": "2024-01-12T08:00:00Z"
+  }
+]
